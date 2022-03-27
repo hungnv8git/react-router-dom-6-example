@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRoutes } from 'react-router-dom'
+import { Home } from './components/Home'
+import { TodoDetail } from './components/todo-list/TodoDetail'
+import { TodoList } from './components/todo-list'
+import { Photos } from './components/photos'
+import { PhotoDetail } from './components/photos/PhotoDetail'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const element = useRoutes([
+    { path: '/', element: <Home /> },
+    { path: 'todo-list', element: <TodoList /> },
+    { path: 'todo-detail/:todoId', element: <TodoDetail /> },
+    { path: 'photos', element: <Photos /> },
+    { path: 'photo-detail/:photoId', element: <PhotoDetail /> }
+  ])
+
+  return element
 }
 
-export default App;
+export default App
